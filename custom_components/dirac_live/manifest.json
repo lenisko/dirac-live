@@ -1,6 +1,7 @@
 {
   "domain": "dirac_live",
   "name": "Dirac Live",
+  "version": "0.1.0",
   "codeowners": [
     "@lenisko"
   ],
