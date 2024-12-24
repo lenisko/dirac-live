@@ -1,4 +1,4 @@
-"""InPost API data coordinator."""
+"""Dirac Live data coordinator."""
 
 import logging
 
