@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package dio.endpoint;
+
+import "google/protobuf/empty.proto";
+
+message UUID {
+  uint64 low = 1;
+  uint64 high = 2;
+}
+
+message DeviceInfo {
+  string manufacturer = 1;
+  string name = 2;
+  string model_name = 3;
+  string unique_device_identifier = 4;
+  int32 num_speakers = 5;
+  int32 num_mics = 6;
+  int32 num_filter_slots = 7;
+  string system_name = 8;
+}
+
+message SlotMetadata {
+  string endpoint_manufacturer = 1;
+  string endpoint_model = 2;
+  UUID endpoint_uuid = 3;
+  repeated int64 required_capabilities = 4;
+}
+
+message SlotInfo {
+  int32 slot_index = 1;
+  string name = 2;
+  string filter_type_name = 3;
+  int32 num_inputs = 4;
+  int32 num_outputs = 5;
+  int32 max_delay = 6;
+  float min_gain = 7;
+  float max_gain = 8;
+  int32 num_sections = 9;
+  int64 creation_time = 10;
+  UUID unique_id = 11;
+  string description = 12;
+  repeated int32 sub_sampling_factor = 13;
+  bool is_trial_filter = 14;
+  SlotMetadata slot_metadata = 15;
+}
+
+message OperationMode {
+  bool gain_enabled = 1;
+  bool delay_enabled = 2;
+  bool filtering_enabled = 3;
+  bool measure_enabled = 4;
+  bool streaming_enabled = 5;
+}
+
+message SlotInfoIndex {
+  int32 slot_index = 1;
+}
+
+service EndpointDevice {
+  rpc GetDeviceInfo (google.protobuf.Empty) returns (DeviceInfo);
+  rpc GetSlotInfo (SlotInfoIndex) returns (SlotInfo);
+  rpc GetActiveSlot (google.protobuf.Empty) returns (SlotInfoIndex);
+  rpc SetActiveSlot (SlotInfoIndex) returns (google.protobuf.Empty);
+  rpc GetOperationMode (google.protobuf.Empty) returns (OperationMode);
+  rpc SetOperationMode (OperationMode) returns (OperationMode);
+}

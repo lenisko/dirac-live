@@ -1,0 +1,19 @@
+{
+  "domain": "dirac_live",
+  "name": "Dirac Live",
+  "codeowners": [
+    "@lenisko"
+  ],
+  "integration_type": "device",
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://www.home-assistant.io/integrations/dirac_live",
+  "homekit": {},
+  "iot_class": "local_polling",
+  "requirements": [
+    "grpcio", "grpcio-tools"
+  ],
+  "loggers": ["grpcio"],
+  "ssdp": [],
+  "zeroconf": []
+}
